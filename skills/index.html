@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>墨言工作室 - Skill 控制台</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="skill-common.css">
+    <style>
+        .dashboard-header {
+            text-align: center;
+            padding: 48px 24px 32px;
+        }
+        .dashboard-header h1 {
+            font-size: 1.8rem;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+        .dashboard-header p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+        .skill-grid {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 24px 48px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+        }
+        .skill-group-title {
+            grid-column: 1 / -1;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-top: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border);
+        }
+        .skill-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 24px;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+            text-decoration: none;
+            display: block;
+        }
+        .skill-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow);
+            border-color: var(--accent);
+        }
+        .skill-card-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+        .skill-card h3 {
+            font-size: 1.05rem;
+            color: var(--text-dark);
+        }
+        .skill-card p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        .home-link {
+            display: inline-block;
+            margin-top: 8px;
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.85rem;
+        }
+        .home-link:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="skill-topbar">
+        <div class="skill-topbar-left">
+            <h1>Skill 控制台</h1>
+        </div>
+        <a href="../index.html" class="back-btn">返回官网</a>
+    </div>
+
+    <div class="dashboard-header">
+        <h1>墨言工作室 Skill 系统</h1>
+        <p>选择对应的 Skill 工具，快速采集客户需求、管理订单流程</p>
+    </div>
+
+    <div class="skill-grid">
+        <!-- 第一层：客户接入 -->
+        <div class="skill-group-title">客户接入 - 需求采集</div>
+
+        <a href="skill-essay.html" class="skill-card">
+            <div class="skill-card-head">
+                <h3>课程论文 Essay</h3>
+                <span class="badge badge-intake">采集</span>
+            </div>
+            <p>采集课程论文需求：学科、格式、字数、查重率、截止日期等</p>
+        </a>
+
+        <a href="skill-dissertation.html" class="skill-card">
+            <div class="skill-card-head">
+                <h3>毕业论文 Dissertation</h3>
+                <span class="badge badge-intake">采集</span>
+            </div>
+            <p>采集毕业论文需求：学位层次、专业、进度、导师要求等</p>
+        </a>
+
+        <a href="skill-data.html" class="skill-card">
+            <div class="skill-card-head">
+                <h3>数据分析 Research</h3>
+                <span class="badge badge-intake">采集</span>
+            </div>
+            <p>采集数据分析需求：工具、数据类型、分析方法、交付物等</p>
+        </a>
+
+        <a href="skill-application.html" class="skill-card">
+            <div class="skill-card-head">
+                <h3>留学文书 Application</h3>
+                <span class="badge badge-intake">采集</span>
+            </div>
+            <p>采集留学文书需求：文书类型、目标院校、个人背景等</p>
+        </a>
+
+        <a href="skill-coding.html" class="skill-card">
+            <div class="skill-card-head">
+                <h3>编程代做 Coding</h3>
+                <span class="badge badge-intake">采集</span>
+            </div>
+            <p>采集编程需求：语言、项目要求、运行环境、是否需要讲解等</p>
+        </a>
+
+        <a href="skill-polish.html" class="skill-card">
+            <div class="skill-card-head">
+                <h3>润色降重 Polish</h3>
+                <span class="badge badge-intake">采集</span>
+            </div>
+            <p>采集润色降重需求：类型、当前/目标查重率、查重系统等</p>
+        </a>
+
+        <!-- 第二层：内部流程 -->
+        <div class="skill-group-title">内部流程 - 订单管理</div>
+
+        <a href="skill-quote.html" class="skill-card">
+            <div class="skill-card-head">
+                <h3>报价计算 Quote</h3>
+                <span class="badge badge-internal">流程</span>
+            </div>
+            <p>根据需求信息自动生成报价单，含加急费、难度系数等</p>
+        </a>
+
+        <a href="skill-assign.html" class="skill-card">
+            <div class="skill-card-head">
+                <h3>写手匹配 Assign</h3>
+                <span class="badge badge-internal">流程</span>
+            </div>
+            <p>根据学科、专业、难度匹配合适写手，生成分配记录</p>
+        </a>
+
+        <a href="skill-track.html" class="skill-card">
+            <div class="skill-card-head">
+                <h3>进度跟踪 Track</h3>
+                <span class="badge badge-internal">流程</span>
+            </div>
+            <p>记录订单状态、里程碑、时间节点，可视化进度管理</p>
+        </a>
+
+        <a href="skill-review.html" class="skill-card">
+            <div class="skill-card-head">
+                <h3>质检审核 Review</h3>
+                <span class="badge badge-internal">流程</span>
+            </div>
+            <p>交付前质量检查清单：查重、格式、内容、引用规范等</p>
+        </a>
+
+        <!-- 第三层：售后 -->
+        <div class="skill-group-title">售后服务</div>
+
+        <a href="skill-revise.html" class="skill-card">
+            <div class="skill-card-head">
+                <h3>修改处理 Revise</h3>
+                <span class="badge badge-after">售后</span>
+            </div>
+            <p>记录修改意见、分类处理、跟踪修改轮次和完成状态</p>
+        </a>
+
+        <a href="skill-feedback.html" class="skill-card">
+            <div class="skill-card-head">
+                <h3>客户回访 Feedback</h3>
+                <span class="badge badge-after">售后</span>
+            </div>
+            <p>满意度调查、客户档案、邀请好评、复购提醒</p>
+        </a>
+    </div>
+</body>
+</html>

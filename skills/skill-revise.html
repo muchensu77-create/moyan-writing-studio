@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill - 修改处理工具</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="skill-common.css">
+</head>
+<body>
+    <div class="skill-topbar">
+        <div class="skill-topbar-left">
+            <a href="index.html" class="back-btn">&#8592; 返回</a>
+            <h1>修改处理 / Revise</h1>
+        </div>
+        <span class="badge badge-after">售后</span>
+    </div>
+
+    <div class="skill-container">
+        <div class="skill-intro">
+            <h2>修改处理工具</h2>
+            <p>记录客户修改意见与处理方案，生成修改摘要用于内部流转与存档。</p>
+        </div>
+
+        <form id="skillForm">
+            <!-- 订单信息 -->
+            <div class="form-section">
+                <div class="form-section-title">订单信息</div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>订单编号 <span class="required">*</span></label>
+                        <input type="text" id="orderId" required placeholder="如：ORD-20240315-001">
+                    </div>
+                    <div class="form-group">
+                        <label>客户称呼</label>
+                        <input type="text" id="clientName" placeholder="如：张同学">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>原写手</label>
+                    <input type="text" id="originalWriter" placeholder="如：W-012">
+                </div>
+            </div>
+
+            <!-- 修改信息 -->
+            <div class="form-section">
+                <div class="form-section-title">修改信息</div>
+                <div class="form-group">
+                    <label>修改轮次 <span class="required">*</span></label>
+                    <div class="option-group">
+                        <label><input type="radio" name="reviseRound" value="第1轮" required><span>第 1 轮</span></label>
+                        <label><input type="radio" name="reviseRound" value="第2轮"><span>第 2 轮</span></label>
+                        <label><input type="radio" name="reviseRound" value="第3轮"><span>第 3 轮</span></label>
+                        <label><input type="radio" name="reviseRound" value="第4轮+"><span>第 4 轮+</span></label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>修改类型（多选）</label>
+                    <div class="option-group">
+                        <label><input type="checkbox" name="reviseType" value="内容修改"><span>内容修改</span></label>
+                        <label><input type="checkbox" name="reviseType" value="格式调整"><span>格式调整</span></label>
+                        <label><input type="checkbox" name="reviseType" value="降重"><span>降重</span></label>
+                        <label><input type="checkbox" name="reviseType" value="补充内容"><span>补充内容</span></label>
+                        <label><input type="checkbox" name="reviseType" value="结构调整"><span>结构调整</span></label>
+                        <label><input type="checkbox" name="reviseType" value="其他"><span>其他</span></label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>客户修改意见 <span class="required">*</span></label>
+                    <textarea id="clientOpinion" required placeholder="详细记录客户反馈的修改要求"></textarea>
+                </div>
+            </div>
+
+            <!-- 处理方案 -->
+            <div class="form-section">
+                <div class="form-section-title">处理方案</div>
+                <div class="form-group">
+                    <label>处理方式 <span class="required">*</span></label>
+                    <div class="option-group">
+                        <label><input type="radio" name="handleMethod" value="原写手修改" required><span>原写手修改</span></label>
+                        <label><input type="radio" name="handleMethod" value="换写手"><span>换写手</span></label>
+                        <label><input type="radio" name="handleMethod" value="主管处理"><span>主管处理</span></label>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>预计完成时间</label>
+                        <input type="date" id="estComplete">
+                    </div>
+                    <div class="form-group">
+                        <label>优先级</label>
+                        <div class="option-group">
+                            <label><input type="radio" name="priority" value="普通"><span>普通</span></label>
+                            <label><input type="radio" name="priority" value="加急"><span>加急</span></label>
+                            <label><input type="radio" name="priority" value="紧急"><span>紧急</span></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 备注 -->
+            <div class="form-section">
+                <div class="form-section-title">备注</div>
+                <div class="form-group">
+                    <label>补充说明</label>
+                    <textarea id="notes" placeholder="如：客户情绪激动，需谨慎沟通；注意保留原稿备份等"></textarea>
+                </div>
+            </div>
+
+            <div class="btn-row">
+                <button type="button" class="btn btn-primary" onclick="generateSummary()">生成修改摘要</button>
+                <button type="reset" class="btn btn-secondary">清空表单</button>
+            </div>
+        </form>
+
+        <div class="output-area" id="outputArea">
+            <h3>修改摘要</h3>
+            <div class="output-content" id="outputContent"></div>
+            <button class="copy-btn" onclick="copySummary()">复制到剪贴板</button>
+        </div>
+    </div>
+
+    <script>
+    function getVal(id) { return document.getElementById(id)?.value?.trim() || '-'; }
+    function getRadio(name) {
+        const el = document.querySelector(`input[name="${name}"]:checked`);
+        return el ? el.value : '-';
+    }
+    function getChecked(name) {
+        const els = document.querySelectorAll(`input[name="${name}"]:checked`);
+        return els.length ? Array.from(els).map(e => e.value).join('、') : '-';
+    }
+
+    function generateSummary() {
+        const form = document.getElementById('skillForm');
+        if (!form.checkValidity()) { form.reportValidity(); return; }
+
+        const summary = `【修改处理摘要】
+============================
+订单编号：${getVal('orderId')}
+客户称呼：${getVal('clientName')}
+原写手：${getVal('originalWriter')}
+---
+修改轮次：${getRadio('reviseRound')}
+修改类型：${getChecked('reviseType')}
+客户意见：${getVal('clientOpinion')}
+---
+处理方式：${getRadio('handleMethod')}
+预计完成：${getVal('estComplete')}
+优先级：${getRadio('priority')}
+---
+备注：${getVal('notes')}
+============================
+记录时间：${new Date().toLocaleString('zh-CN')}`;
+
+        document.getElementById('outputContent').textContent = summary;
+        document.getElementById('outputArea').classList.add('visible');
+        document.getElementById('outputArea').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function copySummary() {
+        const text = document.getElementById('outputContent').textContent;
+        navigator.clipboard.writeText(text).then(() => {
+            const btn = document.querySelector('.copy-btn');
+            btn.textContent = '已复制!';
+            setTimeout(() => btn.textContent = '复制到剪贴板', 2000);
+        });
+    }
+    </script>
+</body>
+</html>

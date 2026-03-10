@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill - 毕业论文需求采集</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="skill-common.css">
+</head>
+<body>
+    <div class="skill-topbar">
+        <div class="skill-topbar-left">
+            <a href="index.html" class="back-btn">&#8592; 返回</a>
+            <h1>毕业论文 / Dissertation</h1>
+        </div>
+        <span class="badge badge-intake">需求采集</span>
+    </div>
+
+    <div class="skill-container">
+        <div class="skill-intro">
+            <h2>毕业论文需求采集表</h2>
+            <p>毕业论文项目周期长、环节多，务必详细采集以下信息。</p>
+        </div>
+
+        <form id="skillForm">
+            <div class="form-section">
+                <div class="form-section-title">客户信息</div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>客户称呼 <span class="required">*</span></label>
+                        <input type="text" id="clientName" required placeholder="如：李同学">
+                    </div>
+                    <div class="form-group">
+                        <label>联系方式 <span class="required">*</span></label>
+                        <input type="text" id="clientContact" required placeholder="微信号/手机号">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>来源渠道</label>
+                    <div class="option-group">
+                        <label><input type="radio" name="source" value="小红书"><span>小红书</span></label>
+                        <label><input type="radio" name="source" value="微信"><span>微信</span></label>
+                        <label><input type="radio" name="source" value="老客户推荐"><span>老客户推荐</span></label>
+                        <label><input type="radio" name="source" value="其他"><span>其他</span></label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <div class="form-section-title">学业背景</div>
+                <div class="form-row-3">
+                    <div class="form-group">
+                        <label>学位层次 <span class="required">*</span></label>
+                        <select id="degree" required>
+                            <option value="">请选择</option>
+                            <option>专科</option>
+                            <option>本科</option>
+                            <option>硕士</option>
+                            <option>MBA/EMBA</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>学校名称 <span class="required">*</span></label>
+                        <input type="text" id="school" required placeholder="如：XX大学">
+                    </div>
+                    <div class="form-group">
+                        <label>学院/系</label>
+                        <input type="text" id="department" placeholder="如：管理学院">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>专业 <span class="required">*</span></label>
+                    <input type="text" id="major" required placeholder="如：工商管理、计算机科学与技术...">
+                </div>
+            </div>
+
+            <div class="form-section">
+                <div class="form-section-title">论文详情</div>
+                <div class="form-group">
+                    <label>研究方向/题目 <span class="required">*</span></label>
+                    <textarea id="topic" required placeholder="已定题填题目，未定题填研究方向（可提供多个备选）"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>当前进度 <span class="required">*</span></label>
+                    <div class="option-group">
+                        <label><input type="radio" name="progress" value="还没开始" required><span>还没开始</span></label>
+                        <label><input type="radio" name="progress" value="选题阶段"><span>选题阶段</span></label>
+                        <label><input type="radio" name="progress" value="开题报告"><span>需要开题报告</span></label>
+                        <label><input type="radio" name="progress" value="正文写作"><span>正文写作</span></label>
+                        <label><input type="radio" name="progress" value="降重修改"><span>降重/修改</span></label>
+                        <label><input type="radio" name="progress" value="答辩PPT"><span>答辩PPT</span></label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>需要的服务内容 <span class="hint">可多选</span></label>
+                    <div class="option-group">
+                        <label><input type="checkbox" name="serviceItems" value="选题"><span>选题</span></label>
+                        <label><input type="checkbox" name="serviceItems" value="开题报告"><span>开题报告</span></label>
+                        <label><input type="checkbox" name="serviceItems" value="文献综述"><span>文献综述</span></label>
+                        <label><input type="checkbox" name="serviceItems" value="正文"><span>正文</span></label>
+                        <label><input type="checkbox" name="serviceItems" value="数据分析"><span>数据分析</span></label>
+                        <label><input type="checkbox" name="serviceItems" value="降重"><span>降重</span></label>
+                        <label><input type="checkbox" name="serviceItems" value="答辩PPT"><span>答辩PPT</span></label>
+                        <label><input type="checkbox" name="serviceItems" value="全套"><span>全套服务</span></label>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>总字数要求 <span class="required">*</span></label>
+                        <input type="text" id="wordCount" required placeholder="如：10000字 / 8000-12000字">
+                    </div>
+                    <div class="form-group">
+                        <label>查重率要求</label>
+                        <input type="text" id="plagRate" placeholder="如：知网低于20%">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>导师特殊要求</label>
+                    <textarea id="tutorReq" placeholder="如：偏好实证研究、要求用特定理论框架、对文献年份有要求等"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>是否有开题报告/任务书等已有文件</label>
+                    <div class="option-group">
+                        <label><input type="radio" name="hasFile" value="有"><span>有，会发送</span></label>
+                        <label><input type="radio" name="hasFile" value="无"><span>没有</span></label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <div class="form-section-title">时间与预算</div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>最终截止日期 <span class="required">*</span></label>
+                        <input type="date" id="deadline" required>
+                    </div>
+                    <div class="form-group">
+                        <label>开题报告截止（如有）</label>
+                        <input type="date" id="proposalDeadline">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>是否接受分阶段交付</label>
+                    <div class="option-group">
+                        <label><input type="radio" name="staged" value="是"><span>是（推荐）</span></label>
+                        <label><input type="radio" name="staged" value="否"><span>否，一次性交付</span></label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>客户预算范围</label>
+                    <input type="text" id="budget" placeholder="如：3000-5000">
+                </div>
+            </div>
+
+            <div class="form-section">
+                <div class="form-section-title">其他备注</div>
+                <div class="form-group">
+                    <label>补充说明</label>
+                    <textarea id="notes" placeholder="任何其他需要注意的事项"></textarea>
+                </div>
+            </div>
+
+            <div class="btn-row">
+                <button type="button" class="btn btn-primary" onclick="generateSummary()">生成需求摘要</button>
+                <button type="reset" class="btn btn-secondary">清空表单</button>
+            </div>
+        </form>
+
+        <div class="output-area" id="outputArea">
+            <h3>需求摘要</h3>
+            <div class="output-content" id="outputContent"></div>
+            <button class="copy-btn" onclick="copySummary()">复制到剪贴板</button>
+        </div>
+    </div>
+
+    <script>
+    function getVal(id) { return document.getElementById(id)?.value?.trim() || '-'; }
+    function getRadio(name) {
+        const el = document.querySelector(`input[name="${name}"]:checked`);
+        return el ? el.value : '-';
+    }
+    function getChecked(name) {
+        const els = document.querySelectorAll(`input[name="${name}"]:checked`);
+        return els.length ? Array.from(els).map(e => e.value).join('、') : '-';
+    }
+
+    function generateSummary() {
+        const form = document.getElementById('skillForm');
+        if (!form.checkValidity()) { form.reportValidity(); return; }
+
+        const summary = `【毕业论文需求单】
+============================
+客户：${getVal('clientName')}
+联系方式：${getVal('clientContact')}
+来源：${getRadio('source')}
+---
+学位：${getVal('degree')}
+学校：${getVal('school')}
+学院：${getVal('department')}
+专业：${getVal('major')}
+---
+题目/方向：${getVal('topic')}
+当前进度：${getRadio('progress')}
+需要服务：${getChecked('serviceItems')}
+字数要求：${getVal('wordCount')}
+查重率：${getVal('plagRate')}
+导师要求：${getVal('tutorReq')}
+已有文件：${getRadio('hasFile')}
+---
+最终截止：${getVal('deadline')}
+开题截止：${getVal('proposalDeadline')}
+分阶段交付：${getRadio('staged')}
+客户预算：${getVal('budget')}
+---
+备注：${getVal('notes')}
+============================
+采集时间：${new Date().toLocaleString('zh-CN')}`;
+
+        document.getElementById('outputContent').textContent = summary;
+        document.getElementById('outputArea').classList.add('visible');
+        document.getElementById('outputArea').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function copySummary() {
+        const text = document.getElementById('outputContent').textContent;
+        navigator.clipboard.writeText(text).then(() => {
+            const btn = document.querySelector('.copy-btn');
+            btn.textContent = '已复制!';
+            setTimeout(() => btn.textContent = '复制到剪贴板', 2000);
+        });
+    }
+    </script>
+</body>
+</html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill - 客户回访工具</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="skill-common.css">
+    <style>
+        .star-group {
+            display: flex;
+            gap: 4px;
+            flex-wrap: wrap;
+        }
+        .star-group label {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: var(--text-body);
+        }
+        .star-group label:hover {
+            border-color: var(--gold);
+        }
+        .star-group label:has(input:checked) {
+            border-color: var(--gold);
+            background: rgba(212,165,116,0.1);
+            color: var(--gold);
+        }
+        .star-group input[type="radio"] {
+            width: auto;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="skill-topbar">
+        <div class="skill-topbar-left">
+            <a href="index.html" class="back-btn">&#8592; 返回</a>
+            <h1>客户回访 / Feedback</h1>
+        </div>
+        <span class="badge badge-after">售后</span>
+    </div>
+
+    <div class="skill-container">
+        <div class="skill-intro">
+            <h2>客户回访工具</h2>
+            <p>订单完结后进行客户回访，记录满意度与后续跟进意向，生成回访摘要。</p>
+        </div>
+
+        <form id="skillForm">
+            <!-- 客户信息 -->
+            <div class="form-section">
+                <div class="form-section-title">客户信息</div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>客户称呼 <span class="required">*</span></label>
+                        <input type="text" id="clientName" required placeholder="如：张同学">
+                    </div>
+                    <div class="form-group">
+                        <label>联系方式</label>
+                        <input type="text" id="clientContact" placeholder="微信号/手机号">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>订单编号</label>
+                    <input type="text" id="orderId" placeholder="如：ORD-20240315-001">
+                </div>
+            </div>
+
+            <!-- 满意度调查 -->
+            <div class="form-section">
+                <div class="form-section-title">满意度调查</div>
+                <div class="form-group">
+                    <label>整体满意度（1-5 星）<span class="required">*</span></label>
+                    <div class="star-group">
+                        <label><input type="radio" name="overallScore" value="1" required><span>1 星</span></label>
+                        <label><input type="radio" name="overallScore" value="2"><span>2 星</span></label>
+                        <label><input type="radio" name="overallScore" value="3"><span>3 星</span></label>
+                        <label><input type="radio" name="overallScore" value="4"><span>4 星</span></label>
+                        <label><input type="radio" name="overallScore" value="5"><span>5 星</span></label>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>质量评分（1-5）</label>
+                        <div class="star-group">
+                            <label><input type="radio" name="qualityScore" value="1"><span>1</span></label>
+                            <label><input type="radio" name="qualityScore" value="2"><span>2</span></label>
+                            <label><input type="radio" name="qualityScore" value="3"><span>3</span></label>
+                            <label><input type="radio" name="qualityScore" value="4"><span>4</span></label>
+                            <label><input type="radio" name="qualityScore" value="5"><span>5</span></label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>沟通评分（1-5）</label>
+                        <div class="star-group">
+                            <label><input type="radio" name="commScore" value="1"><span>1</span></label>
+                            <label><input type="radio" name="commScore" value="2"><span>2</span></label>
+                            <label><input type="radio" name="commScore" value="3"><span>3</span></label>
+                            <label><input type="radio" name="commScore" value="4"><span>4</span></label>
+                            <label><input type="radio" name="commScore" value="5"><span>5</span></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>时效评分（1-5）</label>
+                    <div class="star-group">
+                        <label><input type="radio" name="timeScore" value="1"><span>1</span></label>
+                        <label><input type="radio" name="timeScore" value="2"><span>2</span></label>
+                        <label><input type="radio" name="timeScore" value="3"><span>3</span></label>
+                        <label><input type="radio" name="timeScore" value="4"><span>4</span></label>
+                        <label><input type="radio" name="timeScore" value="5"><span>5</span></label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 客户反馈 -->
+            <div class="form-section">
+                <div class="form-section-title">客户反馈</div>
+                <div class="form-group">
+                    <label>客户反馈内容</label>
+                    <textarea id="feedback" placeholder="记录客户的原话反馈、表扬或投诉内容"></textarea>
+                </div>
+            </div>
+
+            <!-- 后续跟进 -->
+            <div class="form-section">
+                <div class="form-section-title">后续跟进</div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>是否愿意好评</label>
+                        <div class="option-group">
+                            <label><input type="radio" name="willReview" value="是"><span>是</span></label>
+                            <label><input type="radio" name="willReview" value="否"><span>否</span></label>
+                            <label><input type="radio" name="willReview" value="考虑中"><span>考虑中</span></label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>复购意向</label>
+                        <div class="option-group">
+                            <label><input type="radio" name="repurchase" value="高"><span>高</span></label>
+                            <label><input type="radio" name="repurchase" value="中"><span>中</span></label>
+                            <label><input type="radio" name="repurchase" value="低"><span>低</span></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>推荐意向</label>
+                    <div class="option-group">
+                        <label><input type="radio" name="referral" value="高"><span>高</span></label>
+                        <label><input type="radio" name="referral" value="中"><span>中</span></label>
+                        <label><input type="radio" name="referral" value="低"><span>低</span></label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 回访备注 -->
+            <div class="form-section">
+                <div class="form-section-title">回访备注</div>
+                <div class="form-group">
+                    <label>补充说明</label>
+                    <textarea id="notes" placeholder="如：客户表示下学期有毕业论文需求、已承诺发好评等"></textarea>
+                </div>
+            </div>
+
+            <div class="btn-row">
+                <button type="button" class="btn btn-primary" onclick="generateSummary()">生成回访摘要</button>
+                <button type="reset" class="btn btn-secondary">清空表单</button>
+            </div>
+        </form>
+
+        <div class="output-area" id="outputArea">
+            <h3>回访摘要</h3>
+            <div class="output-content" id="outputContent"></div>
+            <button class="copy-btn" onclick="copySummary()">复制到剪贴板</button>
+        </div>
+    </div>
+
+    <script>
+    function getVal(id) { return document.getElementById(id)?.value?.trim() || '-'; }
+    function getRadio(name) {
+        const el = document.querySelector(`input[name="${name}"]:checked`);
+        return el ? el.value : '-';
+    }
+    function getChecked(name) {
+        const els = document.querySelectorAll(`input[name="${name}"]:checked`);
+        return els.length ? Array.from(els).map(e => e.value).join('、') : '-';
+    }
+
+    function generateSummary() {
+        const form = document.getElementById('skillForm');
+        if (!form.checkValidity()) { form.reportValidity(); return; }
+
+        const overall = getRadio('overallScore');
+        const stars = overall !== '-' ? overall + ' 星' : '-';
+
+        const summary = `【客户回访摘要】
+============================
+客户称呼：${getVal('clientName')}
+联系方式：${getVal('clientContact')}
+订单编号：${getVal('orderId')}
+---
+整体满意度：${stars}
+质量评分：${getRadio('qualityScore')} 分
+沟通评分：${getRadio('commScore')} 分
+时效评分：${getRadio('timeScore')} 分
+---
+客户反馈：${getVal('feedback')}
+---
+愿意好评：${getRadio('willReview')}
+复购意向：${getRadio('repurchase')}
+推荐意向：${getRadio('referral')}
+---
+回访备注：${getVal('notes')}
+============================
+回访时间：${new Date().toLocaleString('zh-CN')}`;
+
+        document.getElementById('outputContent').textContent = summary;
+        document.getElementById('outputArea').classList.add('visible');
+        document.getElementById('outputArea').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function copySummary() {
+        const text = document.getElementById('outputContent').textContent;
+        navigator.clipboard.writeText(text).then(() => {
+            const btn = document.querySelector('.copy-btn');
+            btn.textContent = '已复制!';
+            setTimeout(() => btn.textContent = '复制到剪贴板', 2000);
+        });
+    }
+    </script>
+</body>
+</html>

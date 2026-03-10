@@ -6,7 +6,7 @@ window.addEventListener('scroll', () => {
     } else {
         navbar.classList.remove('scrolled');
     }
-});
+}, { passive: true });
 
 // ============ 移动端菜单 ============
 const hamburger = document.querySelector('.hamburger');
@@ -29,7 +29,7 @@ function animateNumbers() {
     const numbers = document.querySelectorAll('.stat-number');
     numbers.forEach(num => {
         const target = parseInt(num.getAttribute('data-target'));
-        const duration = 2000;
+        const duration = 2400;
         const step = target / (duration / 16);
         let current = 0;
 
@@ -47,8 +47,8 @@ function animateNumbers() {
 
 // ============ 滚动动画 (Intersection Observer) ============
 const observerOptions = {
-    threshold: 0.15,
-    rootMargin: '0px 0px -60px 0px'
+    threshold: 0.12,
+    rootMargin: '0px 0px -50px 0px'
 };
 
 const observer = new IntersectionObserver((entries) => {
@@ -68,7 +68,7 @@ const heroObserver = new IntersectionObserver((entries) => {
             heroObserver.unobserve(entry.target);
         }
     });
-}, { threshold: 0.5 });
+}, { threshold: 0.4 });
 
 heroObserver.observe(heroSection);
 
@@ -79,8 +79,9 @@ const animTargets = document.querySelectorAll(
 
 animTargets.forEach((el, index) => {
     el.style.opacity = '0';
-    el.style.transform = 'translateY(24px)';
-    el.style.transition = `opacity 0.6s ease ${index % 3 * 0.1}s, transform 0.6s ease ${index % 3 * 0.1}s`;
+    el.style.transform = 'translateY(20px)';
+    // 更长、更自然的过渡时间，错开延迟更平滑
+    el.style.transition = `opacity 0.75s cubic-bezier(0.4, 0, 0.2, 1) ${index % 4 * 0.08}s, transform 0.75s cubic-bezier(0.4, 0, 0.2, 1) ${index % 4 * 0.08}s`;
     observer.observe(el);
 });
 
@@ -99,7 +100,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
-            const offsetTop = target.offsetTop - 70;
+            const offsetTop = target.offsetTop - 52;
             window.scrollTo({
                 top: offsetTop,
                 behavior: 'smooth'
@@ -116,9 +117,9 @@ if (contactForm) {
 
         const btn = this.querySelector('.btn-primary');
         const originalText = btn.textContent;
-        btn.textContent = '提交成功! 我们会尽快联系您';
-        btn.style.background = 'linear-gradient(135deg, #27ae60, #2ecc71)';
-        btn.style.boxShadow = '0 4px 24px rgba(39, 174, 96, 0.3)';
+        btn.textContent = '提交成功 — 我们会尽快联系您';
+        btn.style.background = '#34c759';
+        btn.style.boxShadow = '0 4px 20px rgba(52, 199, 89, 0.25)';
         btn.disabled = true;
 
         setTimeout(() => {
@@ -127,7 +128,7 @@ if (contactForm) {
             btn.style.boxShadow = '';
             btn.disabled = false;
             this.reset();
-        }, 3000);
+        }, 3500);
     });
 }
 
@@ -136,7 +137,7 @@ const sections = document.querySelectorAll('section[id]');
 window.addEventListener('scroll', () => {
     let current = '';
     sections.forEach(section => {
-        const sectionTop = section.offsetTop - 100;
+        const sectionTop = section.offsetTop - 80;
         if (window.scrollY >= sectionTop) {
             current = section.getAttribute('id');
         }
@@ -148,4 +149,4 @@ window.addEventListener('scroll', () => {
             link.classList.add('active');
         }
     });
-});
+}, { passive: true });

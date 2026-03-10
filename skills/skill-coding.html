@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill - 编程代做需求采集</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="skill-common.css">
+</head>
+<body>
+    <div class="skill-topbar">
+        <div class="skill-topbar-left">
+            <a href="index.html" class="back-btn">&#8592; 返回</a>
+            <h1>编程代做 / Coding</h1>
+        </div>
+        <span class="badge badge-intake">需求采集</span>
+    </div>
+
+    <div class="skill-container">
+        <div class="skill-intro">
+            <h2>编程代做需求采集表</h2>
+            <p>与客户沟通时逐项填写，完成后生成需求摘要用于内部流转。</p>
+        </div>
+
+        <form id="skillForm">
+            <!-- 客户信息 -->
+            <div class="form-section">
+                <div class="form-section-title">客户信息</div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>客户称呼 <span class="required">*</span></label>
+                        <input type="text" id="clientName" required placeholder="如：张同学">
+                    </div>
+                    <div class="form-group">
+                        <label>联系方式 <span class="required">*</span></label>
+                        <input type="text" id="clientContact" required placeholder="微信号/手机号">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>来源渠道</label>
+                    <div class="option-group">
+                        <label><input type="radio" name="source" value="小红书"><span>小红书</span></label>
+                        <label><input type="radio" name="source" value="微信"><span>微信</span></label>
+                        <label><input type="radio" name="source" value="老客户推荐"><span>老客户推荐</span></label>
+                        <label><input type="radio" name="source" value="其他"><span>其他</span></label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 项目信息 -->
+            <div class="form-section">
+                <div class="form-section-title">项目信息</div>
+                <div class="form-group">
+                    <label>编程语言 <span class="required">*</span></label>
+                    <div class="option-group">
+                        <label><input type="checkbox" name="lang" value="Java"><span>Java</span></label>
+                        <label><input type="checkbox" name="lang" value="Python"><span>Python</span></label>
+                        <label><input type="checkbox" name="lang" value="C"><span>C</span></label>
+                        <label><input type="checkbox" name="lang" value="C++"><span>C++</span></label>
+                        <label><input type="checkbox" name="lang" value="JavaScript"><span>JavaScript</span></label>
+                        <label><input type="checkbox" name="lang" value="HTML+CSS"><span>HTML+CSS</span></label>
+                        <label><input type="checkbox" name="lang" value="SQL"><span>SQL</span></label>
+                        <label><input type="checkbox" name="lang" value="MATLAB"><span>MATLAB</span></label>
+                        <label><input type="checkbox" name="lang" value="R"><span>R</span></label>
+                        <label><input type="checkbox" name="lang" value="其他"><span>其他</span></label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>项目类型 <span class="required">*</span></label>
+                    <div class="option-group">
+                        <label><input type="radio" name="projectType" value="课程作业"><span>课程作业</span></label>
+                        <label><input type="radio" name="projectType" value="课程设计"><span>课程设计</span></label>
+                        <label><input type="radio" name="projectType" value="毕业设计"><span>毕业设计</span></label>
+                        <label><input type="radio" name="projectType" value="个人项目"><span>个人项目</span></label>
+                        <label><input type="radio" name="projectType" value="企业项目"><span>企业项目</span></label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>项目描述 <span class="required">*</span></label>
+                    <textarea id="projectDesc" required placeholder="请描述项目功能需求、输入输出、业务逻辑等"></textarea>
+                </div>
+            </div>
+
+            <!-- 技术要求 -->
+            <div class="form-section">
+                <div class="form-section-title">技术要求</div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>运行环境</label>
+                        <input type="text" id="runEnv" placeholder="如：Windows / Linux / Mac">
+                    </div>
+                    <div class="form-group">
+                        <label>框架 / 工具</label>
+                        <input type="text" id="framework" placeholder="如：Spring Boot / Django / React">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>数据库</label>
+                        <input type="text" id="database" placeholder="如：MySQL / MongoDB / 无">
+                    </div>
+                    <div class="form-group">
+                        <label>是否需要报告 / 文档</label>
+                        <div class="option-group">
+                            <label><input type="radio" name="needDoc" value="是"><span>是</span></label>
+                            <label><input type="radio" name="needDoc" value="否"><span>否</span></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 交付要求 -->
+            <div class="form-section">
+                <div class="form-section-title">交付要求</div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>是否需要代码注释</label>
+                        <div class="option-group">
+                            <label><input type="radio" name="needComment" value="是"><span>是</span></label>
+                            <label><input type="radio" name="needComment" value="否"><span>否</span></label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>是否需要运行截图</label>
+                        <div class="option-group">
+                            <label><input type="radio" name="needScreenshot" value="是"><span>是</span></label>
+                            <label><input type="radio" name="needScreenshot" value="否"><span>否</span></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>是否需要代码讲解</label>
+                    <div class="option-group">
+                        <label><input type="radio" name="needExplain" value="是"><span>是</span></label>
+                        <label><input type="radio" name="needExplain" value="否"><span>否</span></label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 时间与预算 -->
+            <div class="form-section">
+                <div class="form-section-title">时间与预算</div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>截止日期 <span class="required">*</span></label>
+                        <input type="date" id="deadline" required>
+                    </div>
+                    <div class="form-group">
+                        <label>是否加急</label>
+                        <select id="urgent">
+                            <option value="否">否（正常排期）</option>
+                            <option value="轻度加急">轻度加急（3天内）</option>
+                            <option value="紧急">紧急（24-48小时）</option>
+                            <option value="特急">特急（24小时内）</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>客户预算范围</label>
+                    <input type="text" id="budget" placeholder="如：500左右 / 不超过800">
+                </div>
+            </div>
+
+            <!-- 备注 -->
+            <div class="form-section">
+                <div class="form-section-title">其他备注</div>
+                <div class="form-group">
+                    <label>特殊要求 / 补充说明</label>
+                    <textarea id="notes" placeholder="如：需要原创代码、不能使用某些第三方库等"></textarea>
+                </div>
+            </div>
+
+            <div class="btn-row">
+                <button type="button" class="btn btn-primary" onclick="generateSummary()">生成需求摘要</button>
+                <button type="reset" class="btn btn-secondary">清空表单</button>
+            </div>
+        </form>
+
+        <div class="output-area" id="outputArea">
+            <h3>需求摘要</h3>
+            <div class="output-content" id="outputContent"></div>
+            <button class="copy-btn" onclick="copySummary()">复制到剪贴板</button>
+        </div>
+    </div>
+
+    <script>
+    function getVal(id) { return document.getElementById(id)?.value?.trim() || '-'; }
+    function getRadio(name) {
+        const el = document.querySelector(`input[name="${name}"]:checked`);
+        return el ? el.value : '-';
+    }
+    function getChecked(name) {
+        const els = document.querySelectorAll(`input[name="${name}"]:checked`);
+        return els.length ? Array.from(els).map(e => e.value).join('、') : '-';
+    }
+
+    function generateSummary() {
+        const form = document.getElementById('skillForm');
+        if (!form.checkValidity()) { form.reportValidity(); return; }
+
+        const summary = `【编程代做需求单】
+============================
+客户：${getVal('clientName')}
+联系方式：${getVal('clientContact')}
+来源：${getRadio('source')}
+---
+编程语言：${getChecked('lang')}
+项目类型：${getRadio('projectType')}
+项目描述：${getVal('projectDesc')}
+---
+运行环境：${getVal('runEnv')}
+框架/工具：${getVal('framework')}
+数据库：${getVal('database')}
+需要报告/文档：${getRadio('needDoc')}
+---
+需要代码注释：${getRadio('needComment')}
+需要运行截图：${getRadio('needScreenshot')}
+需要代码讲解：${getRadio('needExplain')}
+---
+截止日期：${getVal('deadline')}
+是否加急：${getVal('urgent')}
+客户预算：${getVal('budget')}
+---
+备注：${getVal('notes')}
+============================
+采集时间：${new Date().toLocaleString('zh-CN')}`;
+
+        document.getElementById('outputContent').textContent = summary;
+        document.getElementById('outputArea').classList.add('visible');
+        document.getElementById('outputArea').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function copySummary() {
+        const text = document.getElementById('outputContent').textContent;
+        navigator.clipboard.writeText(text).then(() => {
+            const btn = document.querySelector('.copy-btn');
+            btn.textContent = '已复制!';
+            setTimeout(() => btn.textContent = '复制到剪贴板', 2000);
+        });
+    }
+    </script>
+</body>
+</html>

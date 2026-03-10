@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill - 留学文书需求采集</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="skill-common.css">
+</head>
+<body>
+    <div class="skill-topbar">
+        <div class="skill-topbar-left">
+            <a href="index.html" class="back-btn">&#8592; 返回</a>
+            <h1>留学文书 / Application</h1>
+        </div>
+        <span class="badge badge-intake">需求采集</span>
+    </div>
+
+    <div class="skill-container">
+        <div class="skill-intro">
+            <h2>留学文书需求采集表</h2>
+            <p>文书高度个性化，务必详细了解客户背景和目标院校要求。</p>
+        </div>
+
+        <form id="skillForm">
+            <div class="form-section">
+                <div class="form-section-title">客户信息</div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>客户称呼 <span class="required">*</span></label>
+                        <input type="text" id="clientName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>联系方式 <span class="required">*</span></label>
+                        <input type="text" id="clientContact" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <div class="form-section-title">文书类型</div>
+                <div class="form-group">
+                    <label>需要的文书类型 <span class="required">*</span> <span class="hint">可多选</span></label>
+                    <div class="option-group">
+                        <label><input type="checkbox" name="docType" value="PS(个人陈述)"><span>PS 个人陈述</span></label>
+                        <label><input type="checkbox" name="docType" value="SOP(目的陈述)"><span>SOP 目的陈述</span></label>
+                        <label><input type="checkbox" name="docType" value="RL(推荐信)"><span>RL 推荐信</span></label>
+                        <label><input type="checkbox" name="docType" value="CV(简历)"><span>CV 简历</span></label>
+                        <label><input type="checkbox" name="docType" value="Essay(学校命题)"><span>Essay 命题文书</span></label>
+                        <label><input type="checkbox" name="docType" value="Study Plan"><span>Study Plan</span></label>
+                        <label><input type="checkbox" name="docType" value="Research Proposal"><span>Research Proposal</span></label>
+                        <label><input type="checkbox" name="docType" value="Diversity Statement"><span>Diversity Statement</span></label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>推荐信数量（如需要RL）</label>
+                    <input type="text" id="rlCount" placeholder="如：2封">
+                </div>
+            </div>
+
+            <div class="form-section">
+                <div class="form-section-title">申请目标</div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>申请国家/地区 <span class="required">*</span></label>
+                        <input type="text" id="country" required placeholder="如：英国、美国、澳洲...">
+                    </div>
+                    <div class="form-group">
+                        <label>申请层次 <span class="required">*</span></label>
+                        <select id="level" required>
+                            <option value="">请选择</option>
+                            <option>本科</option>
+                            <option>硕士(授课型)</option>
+                            <option>硕士(研究型)</option>
+                            <option>博士</option>
+                            <option>MBA</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>目标院校与专业 <span class="required">*</span></label>
+                    <textarea id="targetSchools" required placeholder="请列出目标院校和专业，如：&#10;1. UCL - MSc Management&#10;2. KCL - MA Education&#10;3. Edinburgh - MSc Finance"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>字数/篇幅限制</label>
+                    <input type="text" id="wordLimit" placeholder="如：500-700 words / 1页A4">
+                </div>
+                <div class="form-group">
+                    <label>学校有无特殊命题要求</label>
+                    <textarea id="essayPrompt" placeholder="如有命题essay，请贴出具体prompt"></textarea>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <div class="form-section-title">个人背景（用于文书素材）</div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>本科学校/专业</label>
+                        <input type="text" id="bgSchool" placeholder="如：某985 金融学">
+                    </div>
+                    <div class="form-group">
+                        <label>GPA/成绩</label>
+                        <input type="text" id="gpa" placeholder="如：3.5/4.0 或 85/100">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>实习/工作经历</label>
+                    <textarea id="internship" placeholder="简要列出与申请相关的实习或工作经历"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>科研/项目经历</label>
+                    <textarea id="research" placeholder="参与过的科研项目、学术竞赛、论文发表等"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>课外活动/志愿者/奖项</label>
+                    <textarea id="activities" placeholder="社团、志愿活动、获奖情况等"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>语言成绩</label>
+                    <input type="text" id="langScore" placeholder="如：IELTS 7.0 / TOEFL 100 / GRE 320">
+                </div>
+            </div>
+
+            <div class="form-section">
+                <div class="form-section-title">时间与预算</div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>截止日期 <span class="required">*</span></label>
+                        <input type="date" id="deadline" required>
+                    </div>
+                    <div class="form-group">
+                        <label>客户预算</label>
+                        <input type="text" id="budget">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>备注</label>
+                    <textarea id="notes" placeholder="其他要求或想要突出的个人特点"></textarea>
+                </div>
+            </div>
+
+            <div class="btn-row">
+                <button type="button" class="btn btn-primary" onclick="generateSummary()">生成需求摘要</button>
+                <button type="reset" class="btn btn-secondary">清空表单</button>
+            </div>
+        </form>
+
+        <div class="output-area" id="outputArea">
+            <h3>需求摘要</h3>
+            <div class="output-content" id="outputContent"></div>
+            <button class="copy-btn" onclick="copySummary()">复制到剪贴板</button>
+        </div>
+    </div>
+
+    <script>
+    function getVal(id) { return document.getElementById(id)?.value?.trim() || '-'; }
+    function getChecked(name) {
+        const els = document.querySelectorAll(`input[name="${name}"]:checked`);
+        return els.length ? Array.from(els).map(e => e.value).join(', ') : '-';
+    }
+
+    function generateSummary() {
+        const form = document.getElementById('skillForm');
+        if (!form.checkValidity()) { form.reportValidity(); return; }
+
+        const summary = `【留学文书需求单】
+============================
+客户：${getVal('clientName')}
+联系方式：${getVal('clientContact')}
+---
+文书类型：${getChecked('docType')}
+推荐信数量：${getVal('rlCount')}
+---
+申请国家：${getVal('country')}
+申请层次：${getVal('level')}
+目标院校：${getVal('targetSchools')}
+字数限制：${getVal('wordLimit')}
+命题要求：${getVal('essayPrompt')}
+---
+本科背景：${getVal('bgSchool')}
+GPA：${getVal('gpa')}
+实习经历：${getVal('internship')}
+科研经历：${getVal('research')}
+课外活动：${getVal('activities')}
+语言成绩：${getVal('langScore')}
+---
+截止日期：${getVal('deadline')}
+客户预算：${getVal('budget')}
+备注：${getVal('notes')}
+============================
+采集时间：${new Date().toLocaleString('zh-CN')}`;
+
+        document.getElementById('outputContent').textContent = summary;
+        document.getElementById('outputArea').classList.add('visible');
+        document.getElementById('outputArea').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function copySummary() {
+        const text = document.getElementById('outputContent').textContent;
+        navigator.clipboard.writeText(text).then(() => {
+            const btn = document.querySelector('.copy-btn');
+            btn.textContent = '已复制!';
+            setTimeout(() => btn.textContent = '复制到剪贴板', 2000);
+        });
+    }
+    </script>
+</body>
+</html>

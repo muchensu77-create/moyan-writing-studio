@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill - 数据分析需求采集</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="skill-common.css">
+</head>
+<body>
+    <div class="skill-topbar">
+        <div class="skill-topbar-left">
+            <a href="index.html" class="back-btn">&#8592; 返回</a>
+            <h1>数据分析 / Research</h1>
+        </div>
+        <span class="badge badge-intake">需求采集</span>
+    </div>
+
+    <div class="skill-container">
+        <div class="skill-intro">
+            <h2>数据分析需求采集表</h2>
+            <p>数据分析项目需明确工具、方法和交付物，请仔细采集。</p>
+        </div>
+
+        <form id="skillForm">
+            <div class="form-section">
+                <div class="form-section-title">客户信息</div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>客户称呼 <span class="required">*</span></label>
+                        <input type="text" id="clientName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>联系方式 <span class="required">*</span></label>
+                        <input type="text" id="clientContact" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <div class="form-section-title">分析工具与方法</div>
+                <div class="form-group">
+                    <label>分析工具 <span class="required">*</span> <span class="hint">可多选</span></label>
+                    <div class="option-group">
+                        <label><input type="checkbox" name="tools" value="SPSS"><span>SPSS</span></label>
+                        <label><input type="checkbox" name="tools" value="Python"><span>Python</span></label>
+                        <label><input type="checkbox" name="tools" value="R语言"><span>R语言</span></label>
+                        <label><input type="checkbox" name="tools" value="Excel"><span>Excel</span></label>
+                        <label><input type="checkbox" name="tools" value="Stata"><span>Stata</span></label>
+                        <label><input type="checkbox" name="tools" value="MATLAB"><span>MATLAB</span></label>
+                        <label><input type="checkbox" name="tools" value="Eviews"><span>Eviews</span></label>
+                        <label><input type="checkbox" name="tools" value="不确定"><span>不确定/都行</span></label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>数据类型 <span class="required">*</span></label>
+                    <div class="option-group">
+                        <label><input type="radio" name="dataType" value="问卷数据" required><span>问卷数据</span></label>
+                        <label><input type="radio" name="dataType" value="实验数据"><span>实验数据</span></label>
+                        <label><input type="radio" name="dataType" value="二手数据"><span>二手/公开数据</span></label>
+                        <label><input type="radio" name="dataType" value="爬虫数据"><span>需要爬取</span></label>
+                        <label><input type="radio" name="dataType" value="尚无数据"><span>尚无数据</span></label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>分析方法 <span class="hint">可多选，不确定可不选</span></label>
+                    <div class="option-group">
+                        <label><input type="checkbox" name="methods" value="描述统计"><span>描述统计</span></label>
+                        <label><input type="checkbox" name="methods" value="相关分析"><span>相关分析</span></label>
+                        <label><input type="checkbox" name="methods" value="回归分析"><span>回归分析</span></label>
+                        <label><input type="checkbox" name="methods" value="方差分析"><span>方差分析ANOVA</span></label>
+                        <label><input type="checkbox" name="methods" value="因子分析"><span>因子分析</span></label>
+                        <label><input type="checkbox" name="methods" value="信效度"><span>信效度检验</span></label>
+                        <label><input type="checkbox" name="methods" value="结构方程"><span>结构方程SEM</span></label>
+                        <label><input type="checkbox" name="methods" value="聚类分析"><span>聚类分析</span></label>
+                        <label><input type="checkbox" name="methods" value="时间序列"><span>时间序列</span></label>
+                        <label><input type="checkbox" name="methods" value="机器学习"><span>机器学习</span></label>
+                        <label><input type="checkbox" name="methods" value="不确定"><span>不确定</span></label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>样本量/数据规模</label>
+                    <input type="text" id="sampleSize" placeholder="如：200份问卷、5年面板数据...">
+                </div>
+            </div>
+
+            <div class="form-section">
+                <div class="form-section-title">需求详情</div>
+                <div class="form-group">
+                    <label>是否需要设计问卷</label>
+                    <div class="option-group">
+                        <label><input type="radio" name="needQuestionnaire" value="是"><span>是</span></label>
+                        <label><input type="radio" name="needQuestionnaire" value="否"><span>否，已有数据</span></label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>交付物要求 <span class="hint">可多选</span></label>
+                    <div class="option-group">
+                        <label><input type="checkbox" name="deliverables" value="分析报告"><span>分析报告/解读</span></label>
+                        <label><input type="checkbox" name="deliverables" value="源代码"><span>源代码</span></label>
+                        <label><input type="checkbox" name="deliverables" value="图表"><span>可视化图表</span></label>
+                        <label><input type="checkbox" name="deliverables" value="原始输出"><span>软件原始输出</span></label>
+                        <label><input type="checkbox" name="deliverables" value="问卷"><span>问卷设计</span></label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>具体需求描述 <span class="required">*</span></label>
+                    <textarea id="description" required placeholder="请描述研究目的、假设（如有）、具体分析要求等"></textarea>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <div class="form-section-title">时间与预算</div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>截止日期 <span class="required">*</span></label>
+                        <input type="date" id="deadline" required>
+                    </div>
+                    <div class="form-group">
+                        <label>客户预算</label>
+                        <input type="text" id="budget" placeholder="预算范围">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>备注</label>
+                    <textarea id="notes" placeholder="其他需要说明的事项"></textarea>
+                </div>
+            </div>
+
+            <div class="btn-row">
+                <button type="button" class="btn btn-primary" onclick="generateSummary()">生成需求摘要</button>
+                <button type="reset" class="btn btn-secondary">清空表单</button>
+            </div>
+        </form>
+
+        <div class="output-area" id="outputArea">
+            <h3>需求摘要</h3>
+            <div class="output-content" id="outputContent"></div>
+            <button class="copy-btn" onclick="copySummary()">复制到剪贴板</button>
+        </div>
+    </div>
+
+    <script>
+    function getVal(id) { return document.getElementById(id)?.value?.trim() || '-'; }
+    function getRadio(name) {
+        const el = document.querySelector(`input[name="${name}"]:checked`);
+        return el ? el.value : '-';
+    }
+    function getChecked(name) {
+        const els = document.querySelectorAll(`input[name="${name}"]:checked`);
+        return els.length ? Array.from(els).map(e => e.value).join(', ') : '-';
+    }
+
+    function generateSummary() {
+        const form = document.getElementById('skillForm');
+        if (!form.checkValidity()) { form.reportValidity(); return; }
+
+        const summary = `【数据分析需求单】
+============================
+客户：${getVal('clientName')}
+联系方式：${getVal('clientContact')}
+---
+分析工具：${getChecked('tools')}
+数据类型：${getRadio('dataType')}
+分析方法：${getChecked('methods')}
+样本量：${getVal('sampleSize')}
+---
+需要设计问卷：${getRadio('needQuestionnaire')}
+交付物：${getChecked('deliverables')}
+需求描述：${getVal('description')}
+---
+截止日期：${getVal('deadline')}
+客户预算：${getVal('budget')}
+备注：${getVal('notes')}
+============================
+采集时间：${new Date().toLocaleString('zh-CN')}`;
+
+        document.getElementById('outputContent').textContent = summary;
+        document.getElementById('outputArea').classList.add('visible');
+        document.getElementById('outputArea').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function copySummary() {
+        const text = document.getElementById('outputContent').textContent;
+        navigator.clipboard.writeText(text).then(() => {
+            const btn = document.querySelector('.copy-btn');
+            btn.textContent = '已复制!';
+            setTimeout(() => btn.textContent = '复制到剪贴板', 2000);
+        });
+    }
+    </script>
+</body>
+</html>

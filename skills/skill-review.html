@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill - 质检审核工具</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="skill-common.css">
+</head>
+<body>
+    <div class="skill-topbar">
+        <div class="skill-topbar-left">
+            <a href="index.html" class="back-btn">&#8592; 返回</a>
+            <h1>质检审核 / Review</h1>
+        </div>
+        <span class="badge badge-internal">内部流程</span>
+    </div>
+
+    <div class="skill-container">
+        <div class="skill-intro">
+            <h2>质检审核工具</h2>
+            <p>对写手提交的初稿进行逐项质检，填写质检结果并给出处理意见。</p>
+        </div>
+
+        <form id="skillForm">
+            <!-- 订单信息 -->
+            <div class="form-section">
+                <div class="form-section-title">订单信息</div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>订单编号 <span class="required">*</span></label>
+                        <input type="text" id="orderId" required placeholder="如：ORD-20240315-001">
+                    </div>
+                    <div class="form-group">
+                        <label>订单类型 <span class="required">*</span></label>
+                        <select id="orderType" required>
+                            <option value="">请选择</option>
+                            <option>课程论文</option>
+                            <option>毕业论文</option>
+                            <option>数据分析</option>
+                            <option>留学文书</option>
+                            <option>编程代做</option>
+                            <option>润色降重</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>写手编号</label>
+                    <input type="text" id="writerId" placeholder="如：W-012">
+                </div>
+            </div>
+
+            <!-- 质检清单 -->
+            <div class="form-section">
+                <div class="form-section-title">质检清单</div>
+                <ul class="checklist">
+                    <li>
+                        <input type="checkbox" id="chk1">
+                        <label for="chk1">查重率达标（符合客户要求）</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="chk2">
+                        <label for="chk2">格式规范（字体、段落、页边距等）</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="chk3">
+                        <label for="chk3">引用正确（引注与参考文献一一对应）</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="chk4">
+                        <label for="chk4">内容切题（围绕题目展开，无跑题）</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="chk5">
+                        <label for="chk5">字数满足（达到客户要求字数）</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="chk6">
+                        <label for="chk6">语言流畅（表达清晰，无明显语病）</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="chk7">
+                        <label for="chk7">图表规范（图表编号、标题、来源标注完整）</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="chk8">
+                        <label for="chk8">参考文献格式（符合要求的引用格式规范）</label>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 质检结果 -->
+            <div class="form-section">
+                <div class="form-section-title">质检结果</div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>查重率实际值</label>
+                        <input type="text" id="plagRate" placeholder="如：12.3%">
+                    </div>
+                    <div class="form-group">
+                        <label>质检评分 <span class="required">*</span></label>
+                        <select id="reviewScore" required>
+                            <option value="">请选择</option>
+                            <option>优秀</option>
+                            <option>良好</option>
+                            <option>合格</option>
+                            <option>需修改</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>问题描述</label>
+                    <textarea id="issues" placeholder="列出发现的具体问题，如：第3页引用格式错误、结论部分字数不足等"></textarea>
+                </div>
+            </div>
+
+            <!-- 处理意见 -->
+            <div class="form-section">
+                <div class="form-section-title">处理意见</div>
+                <div class="form-group">
+                    <label>处理方式 <span class="required">*</span></label>
+                    <select id="decision" required>
+                        <option value="">请选择</option>
+                        <option>直接交付</option>
+                        <option>小修后交付</option>
+                        <option>需要返工</option>
+                        <option>退回重写</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="btn-row">
+                <button type="button" class="btn btn-primary" onclick="generateSummary()">生成质检摘要</button>
+                <button type="reset" class="btn btn-secondary">清空表单</button>
+            </div>
+        </form>
+
+        <div class="output-area" id="outputArea">
+            <h3>质检摘要</h3>
+            <div class="output-content" id="outputContent"></div>
+            <button class="copy-btn" onclick="copySummary()">复制到剪贴板</button>
+        </div>
+    </div>
+
+    <script>
+    function getVal(id) { return document.getElementById(id)?.value?.trim() || '-'; }
+    function getRadio(name) {
+        const el = document.querySelector(`input[name="${name}"]:checked`);
+        return el ? el.value : '-';
+    }
+    function getChecked(name) {
+        const els = document.querySelectorAll(`input[name="${name}"]:checked`);
+        return els.length ? Array.from(els).map(e => e.value).join('、') : '-';
+    }
+
+    function getChecklistStatus() {
+        const items = [
+            { id: 'chk1', label: '查重率达标' },
+            { id: 'chk2', label: '格式规范' },
+            { id: 'chk3', label: '引用正确' },
+            { id: 'chk4', label: '内容切题' },
+            { id: 'chk5', label: '字数满足' },
+            { id: 'chk6', label: '语言流畅' },
+            { id: 'chk7', label: '图表规范' },
+            { id: 'chk8', label: '参考文献格式' },
+        ];
+        const passed = items.filter(i => document.getElementById(i.id)?.checked).map(i => i.label);
+        const failed = items.filter(i => !document.getElementById(i.id)?.checked).map(i => i.label);
+        return { passed, failed };
+    }
+
+    function generateSummary() {
+        const form = document.getElementById('skillForm');
+        if (!form.checkValidity()) { form.reportValidity(); return; }
+
+        const { passed, failed } = getChecklistStatus();
+
+        const summary = `【质检审核摘要】
+============================
+订单编号：${getVal('orderId')}
+订单类型：${getVal('orderType')}
+写手编号：${getVal('writerId')}
+---
+质检通过项：${passed.length > 0 ? passed.join('、') : '无'}
+质检未通过项：${failed.length > 0 ? failed.join('、') : '无'}
+---
+查重率实际值：${getVal('plagRate')}
+质检评分：${getVal('reviewScore')}
+问题描述：${getVal('issues')}
+---
+处理意见：${getVal('decision')}
+============================
+质检时间：${new Date().toLocaleString('zh-CN')}`;
+
+        document.getElementById('outputContent').textContent = summary;
+        document.getElementById('outputArea').classList.add('visible');
+        document.getElementById('outputArea').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function copySummary() {
+        const text = document.getElementById('outputContent').textContent;
+        navigator.clipboard.writeText(text).then(() => {
+            const btn = document.querySelector('.copy-btn');
+            btn.textContent = '已复制!';
+            setTimeout(() => btn.textContent = '复制到剪贴板', 2000);
+        });
+    }
+    </script>
+</body>
+</html>
