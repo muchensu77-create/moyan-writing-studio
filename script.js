@@ -17,10 +17,10 @@ hamburger.addEventListener('click', () => {
     hamburger.classList.toggle('active');
 });
 
-// 点击导航链接后关闭菜单
 document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => {
         navLinks.classList.remove('active');
+        hamburger.classList.remove('active');
     });
 });
 
@@ -47,8 +47,8 @@ function animateNumbers() {
 
 // ============ 滚动动画 (Intersection Observer) ============
 const observerOptions = {
-    threshold: 0.2,
-    rootMargin: '0px 0px -50px 0px'
+    threshold: 0.15,
+    rootMargin: '0px 0px -60px 0px'
 };
 
 const observer = new IntersectionObserver((entries) => {
@@ -60,7 +60,6 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// 监听 Hero 区域进行数字动画
 const heroSection = document.querySelector('.hero');
 const heroObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -73,17 +72,18 @@ const heroObserver = new IntersectionObserver((entries) => {
 
 heroObserver.observe(heroSection);
 
-// 监听所有卡片和区域块
-document.querySelectorAll(
-    '.service-card, .why-item, .process-step, .pricing-card, .review-card, .contact-card'
-).forEach(el => {
+// 监听所有需要动画的元素
+const animTargets = document.querySelectorAll(
+    '.service-card, .why-item, .process-step, .pricing-card, .review-card, .contact-card-large, .contact-form-wrapper'
+);
+
+animTargets.forEach((el, index) => {
     el.style.opacity = '0';
-    el.style.transform = 'translateY(30px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = `opacity 0.6s ease ${index % 3 * 0.1}s, transform 0.6s ease ${index % 3 * 0.1}s`;
     observer.observe(el);
 });
 
-// 添加 animate-in 的样式
 const style = document.createElement('style');
 style.textContent = `
     .animate-in {
@@ -114,16 +114,17 @@ if (contactForm) {
     contactForm.addEventListener('submit', function (e) {
         e.preventDefault();
 
-        // 显示提交成功提示
         const btn = this.querySelector('.btn-primary');
         const originalText = btn.textContent;
-        btn.textContent = '提交成功！我们会尽快联系您';
+        btn.textContent = '提交成功! 我们会尽快联系您';
         btn.style.background = 'linear-gradient(135deg, #27ae60, #2ecc71)';
+        btn.style.boxShadow = '0 4px 24px rgba(39, 174, 96, 0.3)';
         btn.disabled = true;
 
         setTimeout(() => {
             btn.textContent = originalText;
             btn.style.background = '';
+            btn.style.boxShadow = '';
             btn.disabled = false;
             this.reset();
         }, 3000);
